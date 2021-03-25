@@ -4,6 +4,8 @@ class Solver {
 
     constructor(product) {
         this.product = product;
+        this.stocks = this.product.stock.stocks["34"];
+        this.pairs = Object.entries(this.stocks);
     }
 
     getProductName() {
@@ -12,25 +14,17 @@ class Solver {
     }
 
     getShops() {
-        const stocks = this.product.stock.stocks["34"];
-
-        const pairs = Object.entries(stocks);
-
         console.log("Массив номеров магазинов, в которых товар есть в наличии:")
-        console.log(pairs
+        console.log(this.pairs
             .filter((pair) => parseInt(pair[1]) > 0)
             .map((pair) => pair[0]));
     }
 
     getMaxAmount() {
-        const stocks = this.product.stock.stocks["34"];
-
-        const pairs = Object.entries(stocks);
-
         let max = 0;
         let amountOfProduct = 0;
         let shop = "";
-        for (const [currentShop, amount] of pairs){
+        for (const [currentShop, amount] of this.pairs){
             amountOfProduct = parseInt(amount);
             if (amountOfProduct > max){
                 max = amountOfProduct;
