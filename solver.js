@@ -7,6 +7,7 @@ class Solver {
     }
 
     getProductName() {
+        console.log("Название товара:")
         console.log(this.product.displayedName.displayedName.value[0]);
     }
 
@@ -15,6 +16,7 @@ class Solver {
 
         const pairs = Object.entries(stocks);
 
+        console.log("Массив номеров магазинов, в которых товар есть в наличии:")
         console.log(pairs
             .filter((pair) => parseInt(pair[1]) > 0)
             .map((pair) => pair[0]));
@@ -35,8 +37,7 @@ class Solver {
                 shop = currentShop;
             }
         }
-
-        console.log([max, shop]);
+        console.log(`Максимальное количество товара в регионе - ${max}, в магазине под номером ${shop}`)
     }
 }
 
