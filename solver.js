@@ -1,4 +1,4 @@
-import { json } from "./constants";
+import {json} from "./constants.js";
 
 class Solver {
 
@@ -7,19 +7,40 @@ class Solver {
     }
 
     getProductName() {
-        
+        console.log(this.product.displayedName.displayedName.value[0]);
     }
 
     getShops() {
+        const stocks = this.product.stock.stocks["34"];
 
+        const pairs = Object.entries(stocks);
+
+        console.log(pairs
+            .filter((pair) => parseInt(pair[1]) > 0)
+            .map((pair) => pair[0]));
     }
 
     getMaxAmount() {
+        const stocks = this.product.stock.stocks["34"];
 
+        const pairs = Object.entries(stocks);
+
+        let max = 0;
+        let amountOfProduct = 0;
+        let shop = "";
+        for (const [currentShop, amount] of pairs){
+            amountOfProduct = parseInt(amount);
+            if (amountOfProduct > max){
+                max = amountOfProduct;
+                shop = currentShop;
+            }
+        }
+
+        console.log([max, shop]);
     }
 }
 
 const solver = new Solver(json);
-//solver.getProductName();
-//solver.getShops();
-//solver.getMaxAmount();
+solver.getProductName();
+solver.getShops();
+solver.getMaxAmount();
